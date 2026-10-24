@@ -17,7 +17,7 @@ import type { FunCamResponse, FunChannel } from '#shared/fun'
 import { SOURCES, sourceShort } from '#shared/sources'
 import { countryFlag } from '#shared/countries'
 import { formatLatLon } from '#shared/geo'
-import { funChannelPath } from '#shared/routes'
+import { camPagePath, funChannelPath } from '#shared/routes'
 
 definePageMeta({ name: 'fun-channel', layout: false })
 
@@ -318,7 +318,7 @@ const frameSrc = computed(() => {
               >
                 <EyeOff :size="14" />
               </button>
-              <NuxtLink :to="`/?cam=${channel.id}`" class="tv__btn" aria-label="Open in catalogue">
+              <NuxtLink :to="camPagePath(channel.id)" class="tv__btn" aria-label="Open camera page">
                 <ArrowUpRight :size="14" />
               </NuxtLink>
               <button

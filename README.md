@@ -221,7 +221,8 @@ Copy `.env.example` and edit. The useful ones:
 
 | Variable | Default | Meaning |
 | --- | --- | --- |
-| `NUXT_DB_PATH` | `./.data/ipcrawl.sqlite` | SQLite location |
+| `NUXT_DATA_DIR` | `./.data` | Build-time root for the DB, thumbnails and SWR cache |
+| `NUXT_DB_PATH` | `$NUXT_DATA_DIR/ipcrawl.sqlite` | SQLite location |
 | `NUXT_SYNC_SOURCES` | `curated,osm,tfl,digitraffic,internetdb` | Provider allow-list |
 | `NUXT_SEED_DEMO` | `true` | Seed the bundled catalogue on first boot |
 | `NUXT_SYNC_TOKEN` | — | Bearer token required by `POST /api/sources/sync` |
@@ -292,6 +293,10 @@ node_modules tree, so the runtime image needs neither a compiler nor `npm ci`:
 ```
 .output/server/index.mjs      # PORT, HOST, NUXT_DATA_DIR, NUXT_PUBLIC_SITE_URL
 ```
+
+`NUXT_DATA_DIR` is read at **build** time (it sets the thumbnail and SWR-cache
+roots), so set it before `npm run build` if you're mounting a volume. The Docker
+image already bakes in `/data`.
 
 Set `NUXT_PUBLIC_SITE_URL` in any real deployment — it drives canonical links,
 `og:image` URLs, the sitemap and `robots.txt`. Leave `NUXT_SYNC_TOKEN` unset and

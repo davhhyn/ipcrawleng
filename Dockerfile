@@ -10,6 +10,11 @@ COPY package.json package-lock.json ./
 RUN npm ci --ignore-scripts
 
 COPY . .
+
+# Storage roots (thumbs + SWR cache) are baked at build time, so they must point
+# at the runtime volume rather than the build directory.
+ENV NUXT_DATA_DIR=/data
+
 RUN npm run build
 
 # ── Runtime stage ─────────────────────────────────────────────────────────
