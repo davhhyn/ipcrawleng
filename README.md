@@ -44,6 +44,51 @@ Key behaviours:
 
 ---
 
+## Does it actually ingest real cameras?
+
+It depends on one thing only: **whether the machine can reach the providers.**
+
+```bash
+npm run check:sources
+```
+
+That hits each provider directly (no Nuxt, no database, nothing written) and
+tells you what a sync would pull:
+
+```
+  osm           ✓  2 webcam nodes       47 ms     keyless
+  tfl           ✓  2 cameras            16 ms     keyless
+  digitraffic   ✓  3 camera presets     16 ms     keyless
+  windy         –  no NUXT_WINDY_API_KEY set (optional)
+  internetdb    ✓  2 reported ports     15 ms     keyless
+
+  3 of 4 discovery sources reachable — a sync would ingest real cameras now.
+```
+
+If nothing is reachable it says so and exits cleanly (add `--strict` to make
+that a failure, e.g. in a deploy preflight). The app never fabricates a listing
+to cover the gap — it serves the bundled seed catalogue instead.
+
+**What "ingest" means here, precisely:** the app queries *public listings* —
+TfL's JamCam API, Fintraffic's road-weather stations, and OpenStreetMap's
+`tourism=webcam` / `contact:webcam` tags — for camera **URLs that operators
+already publish**, then fetches those URLs to check they answer and to proxy a
+frame. It does **not** scan IP ranges, enumerate ports, or guess URLs, and it
+will not discover cameras that nobody has documented. That is a deliberate
+safety trade-off, and it is the opposite of how a Shodan-based crawler works:
+
+| | Shodan-based ipcrawl | IPCrawl Open |
+|---|---|---|
+| Finding cameras | searches a pre-built host/port index of the whole internet | reads provider listings + OSM tags |
+| Discovery unit | exposed service on an IP:port | a URL someone published |
+| Keys | paid Shodan plan | none |
+| Finds undocumented / router cams | yes | **no** |
+| Can name the operator | sometimes | usually |
+
+`internetdb` is the one Shodan-derived source here: it is free and keyless, it
+only annotates hosts another source already found, and only when the host is a
+literal public IP. It can never create a listing.
+
 ## Quick start
 
 Requirements: **Node 22.5+** (uses the built-in `node:sqlite` module) and npm.
@@ -249,6 +294,7 @@ npm run build         # production build
 npm run verify        # typecheck + unit + ingestion + build, in that order
 npm run generate:geo  # regenerate shared/worldGeo.ts + country metadata
 npm run generate:brand # re-render public/og-cover.png + icons from SVG
+npm run check:sources # probe each provider directly; --strict to fail when offline
 ```
 
 `npm run verify` is the whole gate in one command; CI runs exactly the same
