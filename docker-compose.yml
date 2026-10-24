@@ -1,0 +1,36 @@
+services:
+  ipcrawl:
+    build: .
+    image: ipcrawl-open:local
+    container_name: ipcrawl-open
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
+    environment:
+      # Seeded catalogue on first boot; live providers light up when the
+      # container has outbound network access.
+      NUXT_SEED_DEMO: 'true'
+      # Set a token to allow manual syncs. The daily task runs regardless.
+      NUXT_SYNC_TOKEN: ${NUXT_SYNC_TOKEN:-}
+      NUXT_ENABLE_LIVE_PROBE: ${NUXT_ENABLE_LIVE_PROBE:-true}
+      # Optional free-tier Windy key.
+      NUXT_WINDY_API_KEY: ${NUXT_WINDY_API_KEY:-}
+      # Canonical URL used in metadata, sitemap and og:image tags.
+      NUXT_PUBLIC_SITE_URL: ${NUXT_PUBLIC_SITE_URL:-http://localhost:3000}
+      # Long random value: salts the hashed favorite-voter ids.
+      NUXT_VOTER_PEPPER: ${NUXT_VOTER_PEPPER:-change-me-in-production}
+    volumes:
+      - ipcrawl-data:/data
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+volumes:
+  ipcrawl-data:

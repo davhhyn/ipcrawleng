@@ -1,0 +1,45 @@
+{
+  "name": "ipcrawl-open",
+  "private": true,
+  "type": "module",
+  "description": "A multi-source catalog and live-preview surface for publicly documented open cameras.",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck",
+    "test": "vitest run",
+    "test:unit": "vitest run",
+    "test:watch": "vitest",
+    "test:ingest": "node scripts/test-ingest.mjs",
+    "verify": "npm run typecheck && npm run test:unit && npm run test:ingest && npm run build",
+    "generate:geo": "node scripts/generate-geo.mjs",
+    "generate:brand": "node scripts/generate-brand-assets.mjs",
+    "render:frame": "node scripts/render-frame.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.3.0",
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
+    "@lucide/vue": "^1.61.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "nuxt": "^4.6.2",
+    "tailwindcss": "^4.3.3",
+    "vue": "^3.5.0",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "@types/node": "^24.0.0",
+    "@types/topojson-client": "^3.1.5",
+    "topojson-client": "^3.1.0",
+    "typescript": "^5.9.0",
+    "vitest": "^5.0.5",
+    "vue-tsc": "^3.3.13",
+    "world-atlas": "^2.0.2",
+    "world-countries": "^5.1.0"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  }
+}

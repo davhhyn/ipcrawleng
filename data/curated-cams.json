@@ -1,0 +1,1532 @@
+[
+  {
+    "id": "it-venice-rialto",
+    "title": "Rialto Bridge — Grand Canal",
+    "city": "Venice",
+    "region": "Veneto",
+    "country": "Italy",
+    "lat": 45.438,
+    "lon": 12.3358,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "tourism",
+      "canal",
+      "heritage"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "it-rome-colosseum",
+    "title": "Colosseum — Piazza del Colosseo",
+    "city": "Rome",
+    "region": "Lazio",
+    "country": "Italy",
+    "lat": 41.8902,
+    "lon": 12.4922,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "tourism",
+      "heritage",
+      "square"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "it-florence-duomo",
+    "title": "Florence Cathedral — Piazza del Duomo",
+    "city": "Florence",
+    "region": "Tuscany",
+    "country": "Italy",
+    "lat": 43.7731,
+    "lon": 11.256,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "tourism",
+      "heritage",
+      "square"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "it-positano-spiaggia",
+    "title": "Spiaggia Grande",
+    "city": "Positano",
+    "region": "Campania",
+    "country": "Italy",
+    "lat": 40.6281,
+    "lon": 14.4849,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "coast",
+      "tourism",
+      "beach"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "it-milan-duomo",
+    "title": "Piazza del Duomo",
+    "city": "Milan",
+    "region": "Lombardy",
+    "country": "Italy",
+    "lat": 45.4642,
+    "lon": 9.19,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "tourism",
+      "square",
+      "heritage"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "fr-paris-eiffel",
+    "title": "Eiffel Tower — Champ de Mars",
+    "city": "Paris",
+    "region": "Île-de-France",
+    "country": "France",
+    "lat": 48.8584,
+    "lon": 2.2945,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "tourism",
+      "landmark",
+      "skyline"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "gb-london-tower-bridge",
+    "title": "Tower Bridge — River Thames",
+    "city": "London",
+    "region": "England",
+    "country": "United Kingdom",
+    "lat": 51.5055,
+    "lon": -0.0754,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "tourism",
+      "river",
+      "bridge"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "nl-amsterdam-dam",
+    "title": "Dam Square",
+    "city": "Amsterdam",
+    "region": "North Holland",
+    "country": "Netherlands",
+    "lat": 52.3731,
+    "lon": 4.8926,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "tourism",
+      "square",
+      "canal"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "de-berlin-brandenburg",
+    "title": "Brandenburg Gate",
+    "city": "Berlin",
+    "region": "Berlin",
+    "country": "Germany",
+    "lat": 52.5163,
+    "lon": 13.3777,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "tourism",
+      "heritage",
+      "square"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "cz-prague-charles",
+    "title": "Charles Bridge — Vltava",
+    "city": "Prague",
+    "region": "Prague",
+    "country": "Czechia",
+    "lat": 50.0865,
+    "lon": 14.4114,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "tourism",
+      "river",
+      "bridge"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "at-vienna-stephens",
+    "title": "St. Stephen's Cathedral",
+    "city": "Vienna",
+    "region": "Vienna",
+    "country": "Austria",
+    "lat": 48.2085,
+    "lon": 16.3734,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "tourism",
+      "heritage",
+      "square"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "es-barcelona-sagrada",
+    "title": "Sagrada Família",
+    "city": "Barcelona",
+    "region": "Catalonia",
+    "country": "Spain",
+    "lat": 41.4036,
+    "lon": 2.1744,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "tourism",
+      "heritage",
+      "skyline"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "es-madrid-sol",
+    "title": "Puerta del Sol",
+    "city": "Madrid",
+    "region": "Community of Madrid",
+    "country": "Spain",
+    "lat": 40.4169,
+    "lon": -3.7035,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "tourism",
+      "square",
+      "city"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "pt-lisbon-comercio",
+    "title": "Praça do Comércio — Tagus",
+    "city": "Lisbon",
+    "region": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7075,
+    "lon": -9.1364,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "tourism",
+      "square",
+      "river"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "gr-athens-acropolis",
+    "title": "Acropolis of Athens",
+    "city": "Athens",
+    "region": "Attica",
+    "country": "Greece",
+    "lat": 37.9715,
+    "lon": 23.7257,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "tourism",
+      "heritage",
+      "skyline"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "gr-santorini-oia",
+    "title": "Oia — Caldera",
+    "city": "Santorini",
+    "region": "South Aegean",
+    "country": "Greece",
+    "lat": 36.4618,
+    "lon": 25.3753,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "coast",
+      "tourism",
+      "sunset"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "hr-dubrovnik-old-town",
+    "title": "Old Town — City Walls",
+    "city": "Dubrovnik",
+    "region": "Dalmatia",
+    "country": "Croatia",
+    "lat": 42.6407,
+    "lon": 18.1085,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "coast",
+      "heritage",
+      "tourism"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "hu-budapest-chain",
+    "title": "Széchenyi Chain Bridge",
+    "city": "Budapest",
+    "region": "Central Hungary",
+    "country": "Hungary",
+    "lat": 47.4987,
+    "lon": 19.0457,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "river",
+      "bridge",
+      "tourism"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "dk-copenhagen-nyhavn",
+    "title": "Nyhavn — Canal",
+    "city": "Copenhagen",
+    "region": "Capital Region",
+    "country": "Denmark",
+    "lat": 55.6802,
+    "lon": 12.5912,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "canal",
+      "harbour",
+      "tourism"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "se-stockholm-gamla",
+    "title": "Gamla Stan — Harbour",
+    "city": "Stockholm",
+    "region": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3251,
+    "lon": 18.0714,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "harbour",
+      "heritage",
+      "tourism"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "no-oslo-aker-brygge",
+    "title": "Aker Brygge — Oslofjord",
+    "city": "Oslo",
+    "region": "Oslo",
+    "country": "Norway",
+    "lat": 59.909,
+    "lon": 10.725,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "harbour",
+      "tourism",
+      "coast"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "is-reykjavik-hallgrim",
+    "title": "Hallgrímskirkja — Skyline",
+    "city": "Reykjavík",
+    "region": "Capital Region",
+    "country": "Iceland",
+    "lat": 64.1417,
+    "lon": -21.9266,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "city",
+      "nordic",
+      "tourism"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "fi-helsinki-market",
+    "title": "Market Square — South Harbour",
+    "city": "Helsinki",
+    "region": "Uusimaa",
+    "country": "Finland",
+    "lat": 60.1675,
+    "lon": 24.952,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "harbour",
+      "market",
+      "tourism"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "pl-warsaw-old-town",
+    "title": "Old Town Market Square",
+    "city": "Warsaw",
+    "region": "Masovia",
+    "country": "Poland",
+    "lat": 52.2497,
+    "lon": 21.0122,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "heritage",
+      "square",
+      "tourism"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "gb-edinburgh-castle",
+    "title": "Edinburgh Castle",
+    "city": "Edinburgh",
+    "region": "Scotland",
+    "country": "United Kingdom",
+    "lat": 55.9486,
+    "lon": -3.1999,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "heritage",
+      "skyline",
+      "tourism"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "ch-zurich-lake",
+    "title": "Lake Zurich Promenade",
+    "city": "Zurich",
+    "region": "Zurich",
+    "country": "Switzerland",
+    "lat": 47.3667,
+    "lon": 8.55,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "lake",
+      "alpine",
+      "tourism"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "ch-interlaken-harder",
+    "title": "Harder Kulm — Interlaken",
+    "city": "Interlaken",
+    "region": "Bern",
+    "country": "Switzerland",
+    "lat": 46.6863,
+    "lon": 7.8632,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "alpine",
+      "mountain",
+      "tourism"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "hr-zagreb-jelacic",
+    "title": "Ban Jelačić Square",
+    "city": "Zagreb",
+    "region": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.8131,
+    "lon": 15.9775,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "square",
+      "city",
+      "tourism"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "us-new-york-times-square",
+    "title": "Times Square",
+    "city": "New York",
+    "region": "New York",
+    "country": "United States",
+    "lat": 40.758,
+    "lon": -73.9855,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "city",
+      "skyline",
+      "tourism"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "us-new-york-brooklyn-bridge",
+    "title": "Brooklyn Bridge — East River",
+    "city": "New York",
+    "region": "New York",
+    "country": "United States",
+    "lat": 40.7061,
+    "lon": -73.9969,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "bridge",
+      "river",
+      "skyline"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "us-los-angeles-santa-monica",
+    "title": "Santa Monica Pier",
+    "city": "Los Angeles",
+    "region": "California",
+    "country": "United States",
+    "lat": 34.0092,
+    "lon": -118.497,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "coast",
+      "beach",
+      "pier"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "us-san-francisco-golden-gate",
+    "title": "Golden Gate Bridge",
+    "city": "San Francisco",
+    "region": "California",
+    "country": "United States",
+    "lat": 37.8199,
+    "lon": -122.4783,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "bridge",
+      "coast",
+      "landmark"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "us-chicago-navy-pier",
+    "title": "Navy Pier — Lake Michigan",
+    "city": "Chicago",
+    "region": "Illinois",
+    "country": "United States",
+    "lat": 41.8917,
+    "lon": -87.6074,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "lake",
+      "pier",
+      "skyline"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "us-miami-ocean-drive",
+    "title": "Ocean Drive — South Beach",
+    "city": "Miami",
+    "region": "Florida",
+    "country": "United States",
+    "lat": 25.7826,
+    "lon": -80.1341,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "beach",
+      "coast",
+      "city"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "us-seattle-space-needle",
+    "title": "Space Needle",
+    "city": "Seattle",
+    "region": "Washington",
+    "country": "United States",
+    "lat": 47.6205,
+    "lon": -122.3493,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "skyline",
+      "landmark",
+      "city"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "ca-toronto-cn-tower",
+    "title": "CN Tower — Skyline",
+    "city": "Toronto",
+    "region": "Ontario",
+    "country": "Canada",
+    "lat": 43.6426,
+    "lon": -79.3871,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "skyline",
+      "city",
+      "landmark"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "ca-vancouver-canada-place",
+    "title": "Canada Place — Burrard Inlet",
+    "city": "Vancouver",
+    "region": "British Columbia",
+    "country": "Canada",
+    "lat": 49.2886,
+    "lon": -123.1114,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "harbour",
+      "coast",
+      "city"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "mx-mexico-city-zocalo",
+    "title": "Zócalo — Metropolitan Cathedral",
+    "city": "Mexico City",
+    "region": "Mexico City",
+    "country": "Mexico",
+    "lat": 19.4326,
+    "lon": -99.1332,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "square",
+      "heritage",
+      "city"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "cu-havana-malecon",
+    "title": "Malecón — Havana Bay",
+    "city": "Havana",
+    "region": "La Habana",
+    "country": "Cuba",
+    "lat": 23.14,
+    "lon": -82.38,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "coast",
+      "city",
+      "seafront"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "pa-panama-casco-viejo",
+    "title": "Casco Viejo — Panama Bay",
+    "city": "Panama City",
+    "region": "Panamá",
+    "country": "Panama",
+    "lat": 8.951,
+    "lon": -79.534,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "heritage",
+      "coast",
+      "city"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "br-rio-copacabana",
+    "title": "Copacabana Beach",
+    "city": "Rio de Janeiro",
+    "region": "Rio de Janeiro",
+    "country": "Brazil",
+    "lat": -22.9711,
+    "lon": -43.1822,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "beach",
+      "coast",
+      "tourism"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "ar-buenos-aires-obelisco",
+    "title": "Obelisco — Avenida 9 de Julio",
+    "city": "Buenos Aires",
+    "region": "Buenos Aires",
+    "country": "Argentina",
+    "lat": -34.6037,
+    "lon": -58.3816,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "city",
+      "square",
+      "landmark"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "cl-santiago-plaza-armas",
+    "title": "Plaza de Armas",
+    "city": "Santiago",
+    "region": "Santiago Metropolitan",
+    "country": "Chile",
+    "lat": -33.4372,
+    "lon": -70.6506,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "square",
+      "city",
+      "heritage"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "pe-lima-plaza-mayor",
+    "title": "Plaza Mayor",
+    "city": "Lima",
+    "region": "Lima",
+    "country": "Peru",
+    "lat": -12.0464,
+    "lon": -77.0299,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "heritage",
+      "square",
+      "city"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "pe-cusco-plaza",
+    "title": "Plaza de Armas — Cusco",
+    "city": "Cusco",
+    "region": "Cusco",
+    "country": "Peru",
+    "lat": -13.5164,
+    "lon": -71.9785,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "heritage",
+      "mountain",
+      "square"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "co-bogota-monserrate",
+    "title": "Monserrate — City View",
+    "city": "Bogotá",
+    "region": "Bogotá D.C.",
+    "country": "Colombia",
+    "lat": 4.6054,
+    "lon": -74.055,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "mountain",
+      "skyline",
+      "city"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "co-cartagena-old-town",
+    "title": "Old Town — Walled City",
+    "city": "Cartagena",
+    "region": "Bolívar",
+    "country": "Colombia",
+    "lat": 10.4236,
+    "lon": -75.5253,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "heritage",
+      "coast",
+      "city"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "uy-montevideo-rambla",
+    "title": "Rambla — Río de la Plata",
+    "city": "Montevideo",
+    "region": "Montevideo",
+    "country": "Uruguay",
+    "lat": -34.906,
+    "lon": -56.2,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "coast",
+      "seafront",
+      "city"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "jp-tokyo-shibuya",
+    "title": "Shibuya Crossing",
+    "city": "Tokyo",
+    "region": "Tokyo",
+    "country": "Japan",
+    "lat": 35.6595,
+    "lon": 139.7005,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "city",
+      "skyline",
+      "tourism"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "jp-kyoto-fushimi",
+    "title": "Fushimi Inari Taisha",
+    "city": "Kyoto",
+    "region": "Kyoto",
+    "country": "Japan",
+    "lat": 34.9671,
+    "lon": 135.7727,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "heritage",
+      "tourism",
+      "shrine"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "jp-osaka-dotonbori",
+    "title": "Dotonbori — Canal",
+    "city": "Osaka",
+    "region": "Osaka",
+    "country": "Japan",
+    "lat": 34.6687,
+    "lon": 135.5013,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "city",
+      "canal",
+      "tourism"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "kr-seoul-gwanghwamun",
+    "title": "Gwanghwamun Square",
+    "city": "Seoul",
+    "region": "Seoul",
+    "country": "South Korea",
+    "lat": 37.5759,
+    "lon": 126.9768,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "city",
+      "square",
+      "heritage"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "cn-beijing-tiananmen",
+    "title": "Tiananmen Square",
+    "city": "Beijing",
+    "region": "Beijing",
+    "country": "China",
+    "lat": 39.9055,
+    "lon": 116.3976,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "square",
+      "heritage",
+      "city"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "cn-shanghai-bund",
+    "title": "The Bund — Huangpu River",
+    "city": "Shanghai",
+    "region": "Shanghai",
+    "country": "China",
+    "lat": 31.24,
+    "lon": 121.49,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "skyline",
+      "river",
+      "city"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "hk-victoria-harbour",
+    "title": "Victoria Harbour",
+    "city": "Hong Kong",
+    "region": "Hong Kong",
+    "country": "Hong Kong",
+    "lat": 22.293,
+    "lon": 114.168,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "harbour",
+      "skyline",
+      "city"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "sg-marina-bay",
+    "title": "Marina Bay — Skyline",
+    "city": "Singapore",
+    "region": "Singapore",
+    "country": "Singapore",
+    "lat": 1.283,
+    "lon": 103.8607,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "skyline",
+      "harbour",
+      "city"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "th-bangkok-chao-phraya",
+    "title": "Chao Phraya River",
+    "city": "Bangkok",
+    "region": "Bangkok",
+    "country": "Thailand",
+    "lat": 13.742,
+    "lon": 100.498,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "river",
+      "city",
+      "tourism"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "tw-taipei-101",
+    "title": "Taipei 101 — Xinyi",
+    "city": "Taipei",
+    "region": "Taipei",
+    "country": "Taiwan",
+    "lat": 25.033,
+    "lon": 121.5654,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "skyline",
+      "city",
+      "landmark"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "in-mumbai-gateway",
+    "title": "Gateway of India",
+    "city": "Mumbai",
+    "region": "Maharashtra",
+    "country": "India",
+    "lat": 18.922,
+    "lon": 72.8347,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "coast",
+      "heritage",
+      "city"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "in-delhi-india-gate",
+    "title": "India Gate",
+    "city": "New Delhi",
+    "region": "Delhi",
+    "country": "India",
+    "lat": 28.6129,
+    "lon": 77.2295,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "heritage",
+      "square",
+      "city"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "ae-dubai-burj-khalifa",
+    "title": "Burj Khalifa — Downtown",
+    "city": "Dubai",
+    "region": "Dubai",
+    "country": "United Arab Emirates",
+    "lat": 25.1972,
+    "lon": 55.2744,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "skyline",
+      "city",
+      "landmark"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "ae-abu-dhabi-corniche",
+    "title": "Corniche — Gulf Shore",
+    "city": "Abu Dhabi",
+    "region": "Abu Dhabi",
+    "country": "United Arab Emirates",
+    "lat": 24.479,
+    "lon": 54.37,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "coast",
+      "seafront",
+      "city"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "tr-istanbul-galata",
+    "title": "Galata Bridge — Golden Horn",
+    "city": "Istanbul",
+    "region": "Istanbul",
+    "country": "Türkiye",
+    "lat": 41.019,
+    "lon": 28.974,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "bridge",
+      "river",
+      "city"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "il-jerusalem-old-city",
+    "title": "Old City — Walls",
+    "city": "Jerusalem",
+    "region": "Jerusalem",
+    "country": "Israel",
+    "lat": 31.7767,
+    "lon": 35.2345,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "heritage",
+      "city",
+      "tourism"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "np-kathmandu-boudhanath",
+    "title": "Boudhanath Stupa",
+    "city": "Kathmandu",
+    "region": "Bagmati",
+    "country": "Nepal",
+    "lat": 27.7215,
+    "lon": 85.362,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "heritage",
+      "mountain",
+      "tourism"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "id-bali-tanah-lot",
+    "title": "Tanah Lot — Coast",
+    "city": "Bali",
+    "region": "Bali",
+    "country": "Indonesia",
+    "lat": -8.6212,
+    "lon": 115.0868,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "coast",
+      "temple",
+      "tourism"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "za-cape-town-table-mountain",
+    "title": "Table Mountain — Harbour",
+    "city": "Cape Town",
+    "region": "Western Cape",
+    "country": "South Africa",
+    "lat": -33.9628,
+    "lon": 18.4098,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "mountain",
+      "coast",
+      "city"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "ma-marrakech-jemaa",
+    "title": "Jemaa el-Fnaa",
+    "city": "Marrakech",
+    "region": "Marrakesh-Safi",
+    "country": "Morocco",
+    "lat": 31.6258,
+    "lon": -7.9891,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "square",
+      "market",
+      "heritage"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "eg-cairo-nile",
+    "title": "Nile Corniche",
+    "city": "Cairo",
+    "region": "Cairo",
+    "country": "Egypt",
+    "lat": 30.0459,
+    "lon": 31.2243,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "river",
+      "city",
+      "tourism"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "ke-nairobi-kenyatta",
+    "title": "Kenyatta Avenue",
+    "city": "Nairobi",
+    "region": "Nairobi",
+    "country": "Kenya",
+    "lat": -1.2864,
+    "lon": 36.8172,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "city",
+      "street",
+      "tourism"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "ng-lagos-lekki",
+    "title": "Lekki-Ikoyi Link Bridge",
+    "city": "Lagos",
+    "region": "Lagos",
+    "country": "Nigeria",
+    "lat": 6.45,
+    "lon": 3.47,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "bridge",
+      "coast",
+      "city"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "gh-accra-independence",
+    "title": "Independence Arch",
+    "city": "Accra",
+    "region": "Greater Accra",
+    "country": "Ghana",
+    "lat": 5.547,
+    "lon": -0.195,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "square",
+      "coast",
+      "city"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "tz-zanzibar-stone-town",
+    "title": "Stone Town — Harbour",
+    "city": "Zanzibar City",
+    "region": "Zanzibar",
+    "country": "Tanzania",
+    "lat": -6.165,
+    "lon": 39.192,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "heritage",
+      "harbour",
+      "tourism"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "au-sydney-opera-house",
+    "title": "Sydney Opera House",
+    "city": "Sydney",
+    "region": "New South Wales",
+    "country": "Australia",
+    "lat": -33.8568,
+    "lon": 151.2153,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "harbour",
+      "landmark",
+      "skyline"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "au-melbourne-flinders",
+    "title": "Flinders Street Station",
+    "city": "Melbourne",
+    "region": "Victoria",
+    "country": "Australia",
+    "lat": -37.8183,
+    "lon": 144.9671,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "city",
+      "heritage",
+      "street"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "nz-auckland-viaduct",
+    "title": "Viaduct Harbour",
+    "city": "Auckland",
+    "region": "Auckland",
+    "country": "New Zealand",
+    "lat": -36.844,
+    "lon": 174.762,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "harbour",
+      "city",
+      "coast"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "nz-queenstown-wakatipu",
+    "title": "Lake Wakatipu — The Remarkables",
+    "city": "Queenstown",
+    "region": "Otago",
+    "country": "New Zealand",
+    "lat": -45.0312,
+    "lon": 168.6626,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "lake",
+      "mountain",
+      "tourism"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "us-honolulu-waikiki",
+    "title": "Waikiki Beach",
+    "city": "Honolulu",
+    "region": "Hawaii",
+    "country": "United States",
+    "lat": 21.2766,
+    "lon": -157.827,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "beach",
+      "coast",
+      "tourism"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "fj-suva-harbour",
+    "title": "Suva Harbour",
+    "city": "Suva",
+    "region": "Central",
+    "country": "Fiji",
+    "lat": -18.1416,
+    "lon": 178.4419,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "harbour",
+      "coast",
+      "city"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "gl-nuuk-harbour",
+    "title": "Nuuk Harbour",
+    "city": "Nuuk",
+    "region": "Sermersooq",
+    "country": "Greenland",
+    "lat": 64.1814,
+    "lon": -51.6941,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "harbour",
+      "nordic",
+      "coast"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "sj-longyearbyen",
+    "title": "Longyearbyen — Isfjorden",
+    "city": "Longyearbyen",
+    "region": "Svalbard",
+    "country": "Norway",
+    "lat": 78.2232,
+    "lon": 15.6267,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "nordic",
+      "snow",
+      "harbour"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "cl-punta-arenas-magellan",
+    "title": "Strait of Magellan",
+    "city": "Punta Arenas",
+    "region": "Magallanes",
+    "country": "Chile",
+    "lat": -53.1638,
+    "lon": -70.9171,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "coast",
+      "snow",
+      "harbour"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "ar-ushuaia-beagle",
+    "title": "Beagle Channel",
+    "city": "Ushuaia",
+    "region": "Tierra del Fuego",
+    "country": "Argentina",
+    "lat": -54.8019,
+    "lon": -68.303,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "coast",
+      "mountain",
+      "harbour"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "fo-torshavn-harbour",
+    "title": "Tórshavn Harbour",
+    "city": "Tórshavn",
+    "region": "Streymoy",
+    "country": "Faroe Islands",
+    "lat": 62.0079,
+    "lon": -6.772,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "harbour",
+      "nordic",
+      "coast"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  },
+  {
+    "id": "mt-valletta-grand-harbour",
+    "title": "Grand Harbour",
+    "city": "Valletta",
+    "region": "Valletta",
+    "country": "Malta",
+    "lat": 35.8989,
+    "lon": 14.5146,
+    "kind": "page",
+    "operator": "Landmark seed",
+    "tags": [
+      "harbour",
+      "heritage",
+      "coast"
+    ],
+    "attribution": "Bundled seed · illustrative landmark location",
+    "license": "IPCrawl Open seed dataset (CC0)"
+  }
+]
