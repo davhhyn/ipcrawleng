@@ -1,0 +1,31 @@
+# Nuxt / Nitro
+.nuxt/
+.output/
+.data/
+.nitro/
+.cache/
+dist/
+
+# Dependencies
+node_modules/
+
+# Local sensor scope (names your own networks — never commit)
+sensor.allowlist.json
+
+# Local environment
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-error.log*
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp

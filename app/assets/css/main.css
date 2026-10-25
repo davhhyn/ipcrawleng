@@ -1,0 +1,557 @@
+/* ── IPCrawl Open — design system ─────────────────────────────────────────
+   A dark "night watch" studio: near-black blue surfaces, a cool signal-blue
+   accent, mint liveness and amber caution. Everything is driven by tokens so
+   the Fun layer can re-tint itself into a CRT without forking the palette. */
+
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --color-ink-950: #05070a;
+  --color-ink-900: #080b11;
+  --color-ink-850: #0a0e16;
+  --color-ink-800: #0e131d;
+  --color-ink-750: #121825;
+  --color-ink-700: #18202f;
+  --color-ink-600: #222c3e;
+  --color-ink-500: #354158;
+
+  --color-fog-50: #f2f6fd;
+  --color-fog-100: #e6ecf7;
+  --color-fog-200: #cbd5e6;
+  --color-fog-300: #a3b1c9;
+  --color-fog-400: #7e8ca5;
+  --color-fog-500: #5d6a83;
+  --color-fog-600: #46526a;
+  --color-fog-700: #333d52;
+
+  --color-signal-200: #c7d9ff;
+  --color-signal-300: #a9c6ff;
+  --color-signal-400: #7aa7ff;
+  --color-signal-500: #5c8cf6;
+  --color-signal-600: #3f6fe0;
+  --color-signal-900: #142c62;
+  --color-signal-950: #0c1a3b;
+
+  --color-live-300: #9ffbd7;
+  --color-live-400: #6ff2c0;
+  --color-live-500: #35dba0;
+  --color-live-900: #0b3d2e;
+
+  --color-amber-300: #ffd9a0;
+  --color-amber-400: #ffc061;
+  --color-amber-500: #f5a63a;
+
+  --color-rose-400: #ff7d90;
+  --color-rose-500: #f4566c;
+
+  --color-violet-300: #cbbcff;
+  --color-violet-400: #a78bfa;
+}
+
+:root {
+  color-scheme: dark;
+
+  --bg: #05070a;
+  --bg-raised: #080b11;
+  --bg-panel: #0a0e16;
+  --bg-elevated: #0e131d;
+
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.14);
+
+  --text: #e9eef8;
+  --text-dim: #97a4b9;
+  --text-mute: #647189;
+
+  --signal: #7aa7ff;
+  --signal-bright: #b7cfff;
+  --signal-deep: #3f6fe0;
+  --signal-rgb: 122 167 255;
+  --signal-ink: #081226;
+
+  --live: #6ff2c0;
+  --live-rgb: 111 242 192;
+  --amber: #ffc061;
+  --amber-rgb: 255 192 97;
+  --rose: #ff7d90;
+  --violet: #a78bfa;
+
+  --radius: 14px;
+  --radius-sm: 9px;
+  --header-h: 64px;
+
+  --font-features: 'cv02', 'cv03', 'cv04', 'ss01';
+}
+
+* {
+  border-color: var(--line);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  min-height: 100%;
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-feature-settings: var(--font-features);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* A faint instrument grid + two atmospheric glows behind every page. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 520px at 12% -8%, rgb(var(--signal-rgb) / 0.12), transparent 62%),
+    radial-gradient(760px 480px at 92% 4%, rgb(167 139 250 / 0.07), transparent 60%),
+    radial-gradient(700px 700px at 50% 110%, rgb(var(--live-rgb) / 0.06), transparent 65%);
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+  background-size: 26px 26px;
+  mask-image: linear-gradient(to bottom, black, transparent 78%);
+}
+
+::selection {
+  background: rgb(var(--signal-rgb) / 0.32);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ink-600, #222c3e) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #222c3e;
+  border-radius: 999px;
+  border: 3px solid var(--bg);
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* ── Typographic helpers ──────────────────────────────────────────────── */
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+.display {
+  font-weight: 560;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+}
+
+.text-gradient {
+  background: linear-gradient(96deg, #fff 8%, var(--signal-bright) 48%, var(--live) 96%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Surfaces ─────────────────────────────────────────────────────────── */
+
+.panel {
+  background: linear-gradient(180deg, rgba(18, 24, 37, 0.62), rgba(8, 11, 17, 0.72));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  backdrop-filter: blur(14px);
+}
+
+.panel-flat {
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.panel-hover {
+  transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.panel-hover:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 50px -30px rgb(0 0 0 / 0.9), 0 0 0 1px rgb(var(--signal-rgb) / 0.06);
+}
+
+.hairline {
+  border-top: 1px solid var(--line);
+}
+
+/* ── Controls ─────────────────────────────────────────────────────────── */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 15px;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 150ms ease, border-color 150ms ease, color 150ms ease, transform 150ms ease;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.055);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--signal);
+  border-color: var(--signal);
+  color: var(--signal-ink);
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background: var(--signal-bright);
+  border-color: var(--signal-bright);
+}
+
+.btn-ghost {
+  border-color: transparent;
+  background: transparent;
+  color: var(--text-dim);
+}
+
+.btn-ghost:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.045);
+  border-color: transparent;
+}
+
+.btn-sm {
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: color 150ms ease, background 150ms ease, border-color 150ms ease;
+}
+
+.icon-btn:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--line-strong);
+}
+
+.input {
+  height: 38px;
+  width: 100%;
+  padding: 0 12px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  background: rgba(4, 6, 10, 0.55);
+  color: var(--text);
+  font-size: 13px;
+  transition: border-color 150ms ease, background 150ms ease;
+}
+
+.input::placeholder {
+  color: var(--text-mute);
+}
+
+.input:focus {
+  outline: none;
+  border-color: rgb(var(--signal-rgb) / 0.55);
+  background: rgba(4, 6, 10, 0.8);
+  box-shadow: 0 0 0 3px rgb(var(--signal-rgb) / 0.1);
+}
+
+.select {
+  height: 38px;
+  padding: 0 32px 0 12px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  background-color: rgba(4, 6, 10, 0.55);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2397a4b9' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  color: var(--text);
+  font-size: 13px;
+  appearance: none;
+  cursor: pointer;
+}
+
+.select:focus {
+  outline: none;
+  border-color: rgb(var(--signal-rgb) / 0.55);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.025);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.chip-signal {
+  border-color: rgb(var(--signal-rgb) / 0.3);
+  background: rgb(var(--signal-rgb) / 0.09);
+  color: var(--signal-bright);
+}
+
+.chip-live {
+  border-color: rgb(var(--live-rgb) / 0.3);
+  background: rgb(var(--live-rgb) / 0.08);
+  color: var(--live);
+}
+
+.chip-amber {
+  border-color: rgb(var(--amber-rgb) / 0.32);
+  background: rgb(var(--amber-rgb) / 0.08);
+  color: var(--amber);
+}
+
+.chip-rose {
+  border-color: rgb(255 125 144 / 0.3);
+  background: rgb(255 125 144 / 0.08);
+  color: var(--rose);
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: currentColor;
+  flex: none;
+}
+
+.dot-live {
+  background: var(--live);
+  box-shadow: 0 0 0 0 rgb(var(--live-rgb) / 0.5);
+  animation: pulse-live 2.4s ease-out infinite;
+}
+
+@keyframes pulse-live {
+  0% { box-shadow: 0 0 0 0 rgb(var(--live-rgb) / 0.45); }
+  70% { box-shadow: 0 0 0 6px rgb(var(--live-rgb) / 0); }
+  100% { box-shadow: 0 0 0 0 rgb(var(--live-rgb) / 0); }
+}
+
+/* Scanlines layered over a frame. Purely decorative. */
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.035) 0px,
+    rgba(255, 255, 255, 0.035) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: soft-light;
+  opacity: 0.55;
+}
+
+.vignette::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(120% 90% at 50% 42%, transparent 52%, rgba(0, 0, 0, 0.46) 100%);
+  z-index: 1;
+}
+
+.grain {
+  position: relative;
+}
+
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0.16;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* Corner brackets, like a camera viewfinder. */
+.brackets::before,
+.brackets::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-color: rgba(255, 255, 255, 0.75);
+  border-style: solid;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.brackets::before {
+  top: 12px;
+  left: 12px;
+  border-width: 1.5px 0 0 1.5px;
+}
+
+.brackets::after {
+  bottom: 12px;
+  right: 12px;
+  border-width: 0 1.5px 1.5px 0;
+}
+
+.skeleton {
+  background: linear-gradient(100deg, #0b1018 20%, #121a27 40%, #0b1018 60%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s linear infinite;
+}
+
+@keyframes shimmer {
+  to { background-position: -200% 0; }
+}
+
+/* Page shell */
+.page {
+  width: 100%;
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 0 22px;
+}
+
+@media (min-width: 1024px) {
+  .page {
+    padding: 0 34px;
+  }
+}
+
+.section-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line-strong) 20%, var(--line-strong) 80%, transparent);
+}
+
+/* Range slider */
+input[type='range'] {
+  accent-color: var(--signal);
+}
+
+/* Hide scrollbar utility for horizontal rails */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* View transitions */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 220ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

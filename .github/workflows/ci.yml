@@ -1,0 +1,104 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Typecheck · unit · ingest · build
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck (vue-tsc)
+        run: npm run typecheck
+
+      - name: Unit tests
+        run: npm run test:unit
+
+      # Boots a fixture HTTP server, points the real ingestion pipeline at it and
+      # asserts what reached SQLite. This is the regression gate for ingestion.
+      - name: Ingestion harness
+        run: npm run test:ingest
+        env:
+          NUXT_TELEMETRY_DISABLED: '1'
+
+      - name: Production build
+        run: npm run build
+        env:
+          NUXT_TELEMETRY_DISABLED: '1'
+
+      - name: Smoke-test the production bundle
+        run: |
+          set -euo pipefail
+          NUXT_DB_PATH="$RUNNER_TEMP/smoke.sqlite" PORT=3100 node .output/server/index.mjs &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID 2>/dev/null || true' EXIT
+
+          for _ in $(seq 1 60); do
+            if curl -fsS -m 2 http://127.0.0.1:3100/api/health > /dev/null; then break; fi
+            sleep 1
+          done
+
+          fail=0
+          for path in / /map /stats /sources /api /about /imce /sitemap.xml /robots.txt; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' -m 20 "http://127.0.0.1:3100$path")
+            echo "$path → $code"
+            [ "$code" = "200" ] || fail=1
+          done
+
+          cam=$(curl -s http://127.0.0.1:3100/api/fun/cam | node -e "let d='';process.stdin.on('data',c=>d+=c).on('end',()=>console.log(JSON.parse(d).channel.id))")
+          code=$(curl -s -o /dev/null -w '%{http_code}' -m 20 -H 'Accept: text/html' "http://127.0.0.1:3100/cam/$cam")
+          echo "/cam/$cam → $code"
+          [ "$code" = "200" ] || fail=1
+
+          code=$(curl -s -o /dev/null -w '%{http_code}' -m 20 -H 'Accept: text/html' "http://127.0.0.1:3100/cam/deadbeefdeadbeef")
+          echo "missing camera → $code (expect 404)"
+          [ "$code" = "404" ] || fail=1
+
+          exit $fail
+
+  docker:
+    name: Docker image
+    runs-on: ubuntu-latest
+    needs: verify
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Build image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: false
+          load: true
+          tags: ipcrawl-open:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Boot the container
+        run: |
+          set -euo pipefail
+          docker run -d --name ipcrawl-ci -p 3101:3000 ipcrawl-open:ci
+          for _ in $(seq 1 60); do
+            if curl -fsS -m 2 http://127.0.0.1:3101/api/health > /dev/null; then break; fi
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:3101/api/status | head -c 400
+          docker logs ipcrawl-ci
+          docker rm -f ipcrawl-ci
