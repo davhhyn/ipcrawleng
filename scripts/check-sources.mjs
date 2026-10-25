@@ -115,7 +115,15 @@ const checks = {
 
 const DISCOVERY = new Set(['osm', 'tfl', 'digitraffic', 'windy'])
 
+// Local sources never make a request, so there is nothing to reach: they report
+// what the operator has set up instead of pretending to be a network check.
+const LOCAL_NOTES = {
+  sensor: 'local — run `npm run sensor -- status`',
+  import: 'local — run `npm run sensor -- import --file <dataset>`'
+}
+
 async function runCheck(id) {
+  if (LOCAL_NOTES[id]) return { id, ok: true, skip: LOCAL_NOTES[id], ms: 0 }
   const started = Date.now()
   try {
     const result = await checks[id]()
