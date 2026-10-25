@@ -27,6 +27,13 @@ export default defineNuxtConfig({
     syncSources: process.env.NUXT_SYNC_SOURCES || 'curated,osm,tfl,digitraffic,internetdb',
     syncToken: process.env.NUXT_SYNC_TOKEN || '',
     windyApiKey: process.env.NUXT_WINDY_API_KEY || '',
+    // Optional paid Shodan API. Off unless both the key is set and `shodan`
+    // is listed in NUXT_SYNC_SOURCES — the keyless defaults never touch it.
+    shodanApiKey: process.env.NUXT_SHODAN_API_KEY || '',
+    shodanQuery: process.env.NUXT_SHODAN_QUERY || '',
+    shodanPages: process.env.NUXT_SHODAN_PAGES || '1',
+    shodanMinIntervalMs: process.env.NUXT_SHODAN_MIN_INTERVAL_MS || '1100',
+    shodanEndpoint: process.env.NUXT_SHODAN_ENDPOINT || 'https://api.shodan.io',
     overpassUrl: process.env.NUXT_OVERPASS_URL || 'https://overpass-api.de/api/interpreter',
     // Endpoint overrides exist for tests, mirrors and self-hosted proxies.
     tflEndpoint: process.env.NUXT_TFL_ENDPOINT || '',

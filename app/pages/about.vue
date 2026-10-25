@@ -55,6 +55,7 @@ const providers = [
   { name: 'Fintraffic Digitraffic', licence: 'CC BY 4.0', href: 'https://www.digitraffic.fi/en/' },
   { name: 'Windy Webcams', licence: 'Windy terms', href: 'https://api.windy.com/' },
   { name: 'Shodan InternetDB', licence: 'Enrichment only', href: 'https://internetdb.shodan.io/' },
+  { name: 'Shodan API', licence: 'Optional · paid plan', href: 'https://developer.shodan.io/api' },
   { name: 'Natural Earth', licence: 'Public domain', href: 'https://www.naturalearthdata.com/' }
 ]
 
@@ -73,7 +74,7 @@ const faq = [
   },
   {
     q: 'Why not just use Shodan?',
-    a: 'Because that data sits behind a paid plan, and a catalogue that only exists for people with a commercial subscription is a worse public-good product. InternetDB gives us a keyless enrichment path; discovery itself stays free.'
+    a: 'Because that data sits behind a paid plan, and a catalogue that only exists for people with a commercial subscription is a worse public-good product. Discovery stays free by default. If you already hold a Shodan plan you can opt in with a key — the provider is there, it just never runs unless you turn it on.'
   },
   {
     q: 'Is this the original ipcrawl?',

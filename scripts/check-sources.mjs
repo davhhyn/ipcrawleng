@@ -22,6 +22,8 @@ const TFL_URL = process.env.NUXT_TFL_ENDPOINT || 'https://api.tfl.gov.uk/Place/T
 const DIGITRAFFIC_URL = process.env.NUXT_DIGITRAFFIC_ENDPOINT || 'https://tie.digitraffic.fi/api/weathercam/v1/stations'
 const WINDY_URL = process.env.NUXT_WINDY_ENDPOINT || 'https://api.windy.com/webcams/api/v3/webcams'
 const INTERNETDB_URL = process.env.NUXT_INTERNETDB_ENDPOINT || 'https://internetdb.shodan.io'
+const SHODAN_URL = (process.env.NUXT_SHODAN_ENDPOINT || 'https://api.shodan.io').replace(/\/$/, '')
+const SHODAN_KEY = (process.env.NUXT_SHODAN_API_KEY || '').trim()
 const WINDY_KEY = (process.env.NUXT_WINDY_API_KEY || '').trim()
 
 const OVERPASS_QUERY = `[out:json][timeout:25];
@@ -99,6 +101,28 @@ const checks = {
     return { count: webcams.length, unit: 'webcams', sample: webcams[0]?.title ?? null }
   },
 
+  /**
+   * Uses /api-info, which reports the plan and remaining credits without
+   * spending a query credit — a key check should never cost the operator money.
+   */
+  async shodan() {
+    if (!SHODAN_KEY) return { skip: 'no NUXT_SHODAN_API_KEY set (optional, paid)' }
+    const url = new URL('/api-info', SHODAN_URL)
+    url.searchParams.set('key', SHODAN_KEY)
+    const response = await fetchWithTimeout(url.toString())
+    if (response.status === 401 || response.status === 403) throw new Error('rejected the API key')
+    if (!response.ok) throw new Error(`HTTP ${response.status}`)
+    const payload = await response.json()
+    if (payload?.error) throw new Error(String(payload.error).slice(0, 40))
+    const credits = Number(payload?.query_credits ?? 0)
+    return {
+      count: credits,
+      unit: 'query credits',
+      note: `${payload?.plan ?? 'unknown'} plan · optional paid source`,
+      sample: null
+    }
+  },
+
   async internetdb() {
     const response = await fetchWithTimeout(`${INTERNETDB_URL}/8.8.8.8`)
     if (!response.ok) throw new Error(`HTTP ${response.status}`)
@@ -113,7 +137,7 @@ const checks = {
   }
 }
 
-const DISCOVERY = new Set(['osm', 'tfl', 'digitraffic', 'windy'])
+const DISCOVERY = new Set(['osm', 'tfl', 'digitraffic', 'windy', 'shodan'])
 
 // Local sources never make a request, so there is nothing to reach: they report
 // what the operator has set up instead of pretending to be a network check.

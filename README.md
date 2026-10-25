@@ -166,6 +166,7 @@ SVG scene rendered from the camera id, always stamped as illustrative.
 | **TfL JamCams** (`tfl`) | discovery | — | Open Government Licence v3 | London |
 | **Fintraffic** (`digitraffic`) | discovery | — | CC BY 4.0 | Finland |
 | **Windy Webcams** (`windy`) | discovery | optional free key | Windy ToS | Global, opt-in |
+| **Shodan API** (`shodan`) | discovery | paid API key, opt-in | Shodan API terms | Whatever your plan allows |
 | **InternetDB** (`internetdb`) | enrichment | — | Shodan public data | Tags/vendor only |
 | **Local sensor** (`sensor`) | discovery · local | — | your declared scope | Networks you allowlist |
 | **Dataset import** (`import`) | discovery · local | — | your dataset | Whatever you point it at |
@@ -186,6 +187,43 @@ another source already found. It can never create a listing.
 
 If you want the other kind of discovery — sweeping your own network for open cameras — that's the
 optional local sensor below.
+
+### Already paying for Shodan? You can plug it in
+
+There is an optional `shodan` provider for people who already hold a Shodan API plan. It is off
+unless **both** conditions are true, so a fresh checkout never talks to Shodan:
+
+```bash
+NUXT_SYNC_SOURCES=curated,osm,tfl,digitraffic,internetdb,shodan   # 1. opt the source in
+NUXT_SHODAN_API_KEY=your-key-here                                  # 2. supply the key
+NUXT_SHODAN_QUERY='has_screenshot:true port:80,8080,8443'          # optional, see below
+```
+
+| Variable | Default | Meaning |
+| --- | --- | --- |
+| `NUXT_SHODAN_API_KEY` | — | Your Shodan API key. Without it the source stays idle. |
+| `NUXT_SHODAN_QUERY` | `has_screenshot:true port:80,443,8080,8000,8081,8443,8888` | Any [Shodan search filter](https://www.shodan.io/search/filters) |
+| `NUXT_SHODAN_PAGES` | `1` | Result pages to read (max 5, 100 matches each) |
+| `NUXT_SHODAN_MIN_INTERVAL_MS` | `1100` | Gap between page requests; Shodan allows ~1/second |
+
+What it does with the results, and what it refuses to do:
+
+- **A match is a candidate, not a fact.** Shodan's index can be weeks stale, so every row it returns
+  is re-probed by this app and gets *our* verdict. Shodan's cached `http.status` never becomes the
+  `live` badge.
+- **Web services only.** Shodan is full of `554/tcp` RTSP cameras, which this pipeline can't
+  represent — it stores and probes HTTP(S) URLs. Those matches are skipped and counted in the sync
+  log. If you need them, export from Shodan and use `npm run sensor -- import`, which does support
+  RTSP rows.
+- **IPv4 literals only.** A match becomes `http://ip:port/`. Hostnames are dropped so a Shodan record
+  can never become a way to point the server at a new name.
+- **The key is never logged.** Errors say "Shodan rejected the API key", not the URL that contained it.
+- **Your key, your bill.** `npm run check:sources` validates it against `/api-info`, which reports
+  your plan and remaining credits **without spending a query credit**.
+
+Cost, honestly: Shodan sells query credits per plan, and a deep crawl (many pages, frequent syncs) can
+burn through them. The defaults are deliberately shallow — one page per run, and the daily task is
+the only thing that runs it.
 
 ### Checking reachability before trusting a sync
 
@@ -307,6 +345,7 @@ Copy `.env.example` and edit. The ones that matter:
 | `NUXT_ALLOW_PUBLIC_SYNC` | `false` | Allow unauthenticated sync outside dev |
 | `NUXT_ENABLE_LIVE_PROBE` | `true` | Probe feeds for liveness |
 | `NUXT_WINDY_API_KEY` | — | Optional free-tier key |
+| `NUXT_SHODAN_API_KEY` | — | Optional paid Shodan API (also add `shodan` to `NUXT_SYNC_SOURCES`) |
 | `NUXT_OVERPASS_URL` | `overpass-api.de` | Overpass mirror or proxy |
 | `NUXT_BLOCKED_HOSTS` | — | Host suffixes / `source:<id>` to never publish |
 | `NUXT_VOTER_PEPPER` | — | Salt for hashed favourite voters |

@@ -211,6 +211,13 @@ parsing plus one local POST.
 > data; the point of this command is that *you* decide what enters your index,
 > not that you get around a paywall.
 
+**Import vs. the Shodan provider.** This path is for a file you already own and
+never touches the network. If you'd rather query Shodan directly, there is an
+optional `shodan` provider — it needs a paid API key and `shodan` in
+`NUXT_SYNC_SOURCES`; see [the README](../README.md#already-paying-for-shodan-you-can-plug-it-in).
+The difference that matters: `import` accepts RTSP rows, the API provider does
+not, because the API path hands rows to an HTTP prober.
+
 ---
 
 ## Limits, honestly

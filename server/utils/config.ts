@@ -28,11 +28,37 @@ export function configuredSourceIds(): string[] {
 export function isSourceConfigured(id: string): boolean {
   const config = useRuntimeConfig()
   if (id === 'windy') return Boolean(String(config.windyApiKey || '').trim())
+  if (id === 'shodan') return Boolean(String(config.shodanApiKey || '').trim())
   return true
 }
 
 export function isSourceEnabled(id: string): boolean {
   return configuredSourceIds().includes(id) && isSourceConfigured(id)
+}
+
+/**
+ * Shodan is opt-in twice over: `shodan` must be in NUXT_SYNC_SOURCES *and*
+ * NUXT_SHODAN_API_KEY must be set. Neither default enables it.
+ */
+export function shodanApiKey(): string {
+  return String(useRuntimeConfig().shodanApiKey || '').trim()
+}
+
+export function shodanQuery(): string {
+  return String(useRuntimeConfig().shodanQuery || '').trim()
+}
+
+export function shodanPages(): number {
+  return Math.max(1, Math.min(5, parseNumber(useRuntimeConfig().shodanPages, 1)))
+}
+
+/** Shodan allows ~1 search request/second; keep pages spaced out. */
+export function shodanMinIntervalMs(): number {
+  return Math.max(0, parseNumber(useRuntimeConfig().shodanMinIntervalMs, 1100))
+}
+
+export function shodanEndpoint(): string {
+  return String(useRuntimeConfig().shodanEndpoint || 'https://api.shodan.io')
 }
 
 export function missingSourceKey(id: string): boolean {

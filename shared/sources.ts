@@ -1,10 +1,11 @@
 /**
  * Provider catalogue, shared by the ingestion engine and the UI.
  *
- * The first four providers are free and keyless — the app is fully functional
+ * The default providers are free and keyless — the app is fully functional
  * with no accounts and no paywalled intelligence feed. Windy is an optional
- * free-tier key; InternetDB is a keyless enrichment source, never the sole
- * basis for a listing.
+ * free-tier key; `shodan` is an optional paid API for people who already have
+ * one; InternetDB is a keyless enrichment source, never the sole basis for a
+ * listing.
  */
 
 export interface SourceDefinition {
@@ -99,6 +100,21 @@ export const SOURCES: SourceDefinition[] = [
     requiresEnv: 'NUXT_WINDY_API_KEY',
     accent: '#ffc061',
     coverage: 'Global · partner network'
+  },
+  {
+    id: 'shodan',
+    label: 'Shodan API',
+    short: 'SHODAN',
+    kind: 'discovery',
+    description:
+      'Optional paid integration. If you already have a Shodan API plan, this queries its host index for camera-shaped services, then re-probes every host locally so liveness remains something we measured. Disabled unless a key is configured.',
+    homepage: 'https://developer.shodan.io/api',
+    license: 'Shodan API terms — a paid subscription is required',
+    licenseUrl: 'https://www.shodan.io/terms',
+    keyless: false,
+    requiresEnv: 'NUXT_SHODAN_API_KEY',
+    accent: '#ff9ecb',
+    coverage: 'Global · whatever your plan allows'
   },
   {
     id: 'internetdb',

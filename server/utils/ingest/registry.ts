@@ -5,6 +5,7 @@ import { tflProvider } from './providers/tfl'
 import { digitrafficProvider } from './providers/digitraffic'
 import { windyProvider } from './providers/windy'
 import { internetDbProvider } from './providers/internetdb'
+import { shodanProvider } from './providers/shodan'
 
 const PROVIDERS: Record<string, CameraProvider> = {
   curated: curatedProvider,
@@ -12,6 +13,7 @@ const PROVIDERS: Record<string, CameraProvider> = {
   tfl: tflProvider,
   digitraffic: digitrafficProvider,
   windy: windyProvider,
+  shodan: shodanProvider,
   internetdb: internetDbProvider
 }
 

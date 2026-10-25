@@ -250,7 +250,8 @@ const SOURCE_PRIORITY: Record<string, number> = {
   tfl: 1,
   digitraffic: 2,
   windy: 3,
-  osm: 4
+  osm: 4,
+  shodan: 5
 }
 
 /**
