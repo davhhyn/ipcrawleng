@@ -66,7 +66,7 @@ export interface SourceHealth {
   id: string
   label: string
   short: string
-  kind: 'discovery' | 'enrichment' | 'seed'
+  kind: 'discovery' | 'enrichment' | 'seed' | 'local'
   description: string
   homepage: string
   license: string

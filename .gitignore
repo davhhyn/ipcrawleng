@@ -9,6 +9,9 @@ dist/
 # Dependencies
 node_modules/
 
+# Local sensor scope (names your own networks — never commit)
+sensor.allowlist.json
+
 # Local environment
 .env
 .env.*

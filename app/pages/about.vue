@@ -10,7 +10,7 @@ const principles = [
   {
     icon: ShieldCheck,
     title: 'Documentation, not discovery by force',
-    text: 'Every camera here arrives through a public API, an open dataset, or a community-mapped node. We do not scan networks, guess credentials, or enumerate address ranges.'
+    text: 'Every camera here arrives through a public API, an open dataset, or a community-mapped node. No provider scans address ranges, and nothing here guesses credentials. The optional local sensor is the one exception, and it only probes networks you allowlist on your own machine.'
   },
   {
     icon: KeyRound,
@@ -45,6 +45,7 @@ const layers = [
   { path: 'layers/map/', text: 'Atlas at /map — clustered world view over the same catalogue.' },
   { path: 'layers/imce/', text: '“Is my camera exposed?” check at /imce.' },
   { path: 'server/utils/ingest/', text: 'Provider adapters, normalisation, dedupe and the sync pipeline.' },
+  { path: 'sensor/', text: 'Local sensor: authorization gate, port probes, fingerprints, dataset import.' },
   { path: 'shared/', text: 'Wire contracts shared by client and server, plus generated geo data.' }
 ]
 

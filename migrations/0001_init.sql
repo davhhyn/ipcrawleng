@@ -103,3 +103,24 @@ CREATE TABLE IF NOT EXISTS meta (
   key   TEXT PRIMARY KEY,
   value TEXT NOT NULL
 );
+
+-- ── Local sensor bookkeeping ───────────────────────────────────────────────
+-- Written by POST /api/sensor/ingest (called from scripts/sensor.mjs on the
+-- operator's machine). One row per scan/import batch.
+
+CREATE TABLE IF NOT EXISTS sensor_runs (
+  id              INTEGER PRIMARY KEY AUTOINCREMENT,
+  origin          TEXT NOT NULL,
+  trigger         TEXT NOT NULL DEFAULT 'manual',
+  started_at      INTEGER NOT NULL,
+  finished_at     INTEGER,
+  status          TEXT NOT NULL DEFAULT 'running',
+  stored          INTEGER NOT NULL DEFAULT 0,
+  inserted        INTEGER NOT NULL DEFAULT 0,
+  updated         INTEGER NOT NULL DEFAULT 0,
+  deactivated     INTEGER NOT NULL DEFAULT 0,
+  rejected        INTEGER NOT NULL DEFAULT 0,
+  duration_ms     INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE INDEX IF NOT EXISTS idx_sensor_runs_started ON sensor_runs(started_at DESC);

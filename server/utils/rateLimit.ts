@@ -55,5 +55,6 @@ export const RATE_LIMITS = {
   favorite: { limit: 40, windowMs: 60_000 },
   sync: { limit: 1, windowMs: 30_000 },
   random: { limit: 120, windowMs: 60_000 },
-  ip: { limit: 30, windowMs: 60_000 }
+  ip: { limit: 30, windowMs: 60_000 },
+  sensor: { limit: 12, windowMs: 60_000 }
 } as const

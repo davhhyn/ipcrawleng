@@ -41,6 +41,11 @@ export default defineNuxtConfig({
     // Test-only escape hatch: allows loopback hosts in the fixture harness.
     // Never enable this in production.
     allowPrivateHosts: process.env.NUXT_ALLOW_PRIVATE_HOSTS || 'false',
+    // Local sensor: only the CLI writes, and only your own rows are reachable
+    // on private addresses. Both can be switched off.
+    sensorIngest: process.env.NUXT_SENSOR_INGEST || 'true',
+    sensorFetchLocal: process.env.NUXT_SENSOR_FETCH_LOCAL || 'true',
+    sensorAllowRemoteIngest: process.env.NUXT_SENSOR_ALLOW_REMOTE_INGEST || 'false',
     // TfL/Windy publish frames over HTTPS only; plain-http mirrors opt out.
     upgradeInsecureImages: process.env.NUXT_UPGRADE_INSECURE_IMAGES || 'true',
     voterPepper: process.env.NUXT_VOTER_PEPPER || ''

@@ -50,6 +50,22 @@ export const SCHEMA_STATEMENTS: string[] = [
   'CREATE INDEX IF NOT EXISTS idx_cams_geo ON cams(active, lat, lon)',
   'CREATE INDEX IF NOT EXISTS idx_cams_firstseen ON cams(active, first_seen_at DESC)',
 
+  `CREATE TABLE IF NOT EXISTS sensor_runs (
+    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+    origin          TEXT NOT NULL,
+    trigger         TEXT NOT NULL DEFAULT 'manual',
+    started_at      INTEGER NOT NULL,
+    finished_at     INTEGER,
+    status          TEXT NOT NULL DEFAULT 'running',
+    stored          INTEGER NOT NULL DEFAULT 0,
+    inserted        INTEGER NOT NULL DEFAULT 0,
+    updated         INTEGER NOT NULL DEFAULT 0,
+    deactivated     INTEGER NOT NULL DEFAULT 0,
+    rejected        INTEGER NOT NULL DEFAULT 0,
+    duration_ms     INTEGER NOT NULL DEFAULT 0
+  )`,
+  'CREATE INDEX IF NOT EXISTS idx_sensor_runs_started ON sensor_runs(started_at DESC)',
+
   `CREATE TABLE IF NOT EXISTS cam_favorites (
     cam_id      TEXT NOT NULL,
     voter_hash  TEXT NOT NULL,

@@ -220,6 +220,19 @@ export interface ProbeRecord {
   checkedAt: number
 }
 
+/** Set a row's status without pretending a probe happened (`page`, `unknown`). */
+export function setStatus(
+  id: string,
+  status: 'live' | 'offline' | 'unknown' | 'page',
+  httpStatus: number | null = null,
+  error: string | null = null
+): void {
+  run(
+    `UPDATE cams SET status = ?, http_status = ?, probe_error = ? WHERE id = ?`,
+    [status, httpStatus, error, id]
+  )
+}
+
 export function recordProbe(id: string, probe: ProbeRecord): void {
   run(
     `UPDATE cams

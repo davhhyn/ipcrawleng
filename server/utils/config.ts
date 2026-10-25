@@ -1,4 +1,4 @@
-import { SOURCE_BY_ID, SOURCES } from '#shared/sources'
+import { isLocalSource, SOURCE_BY_ID, SOURCES } from '#shared/sources'
 
 export function parseBoolean(value: unknown, fallback: boolean): boolean {
   if (typeof value === 'boolean') return value
@@ -20,7 +20,8 @@ export function configuredSourceIds(): string[] {
   const ids = raw
     .split(',')
     .map(value => value.trim().toLowerCase())
-    .filter(value => Boolean(SOURCE_BY_ID[value]))
+    // Local sources are never scheduled — they only run when an operator does.
+    .filter(value => Boolean(SOURCE_BY_ID[value]) && !isLocalSource(value))
   return [...new Set(ids)]
 }
 
@@ -69,6 +70,16 @@ export function blockedHosts(): string[] {
     .split(',')
     .map(value => value.trim().toLowerCase())
     .filter(Boolean)
+}
+
+/** Allow the frame proxy to reach cameras on private addresses (sensor rows). */
+export function sensorFetchLocal(): boolean {
+  return parseBoolean(useRuntimeConfig().sensorFetchLocal, true)
+}
+
+/** Allow the local sensor CLI to POST findings into the catalogue. */
+export function sensorIngestEnabled(): boolean {
+  return parseBoolean(useRuntimeConfig().sensorIngest, true)
 }
 
 /** Test-only: relaxes the private-host guard (fixture server, local mirrors). */

@@ -76,7 +76,22 @@ async function runSync() {
 function kindLabel(kind: string) {
   if (kind === 'discovery') return 'DISCOVERY'
   if (kind === 'enrichment') return 'ENRICHMENT'
+  if (kind === 'local') return 'LOCAL · ON DEMAND'
   return 'SEED'
+}
+
+/** Local sources are never "disabled" — they run when you run them. */
+function stateLabel(source: { kind: string, enabled: boolean, awaitingKey: boolean, healthy: boolean }) {
+  if (source.kind === 'local') return source.healthy ? 'HAS ROWS' : 'ON DEMAND'
+  if (!source.enabled) return 'DISABLED'
+  if (source.awaitingKey) return 'NO KEY'
+  return source.healthy ? 'HEALTHY' : 'READY'
+}
+
+function stateClass(source: { kind: string, enabled: boolean, awaitingKey: boolean, healthy: boolean }) {
+  if (source.kind === 'local') return source.healthy ? 'source__state--ok' : 'source__state--idle'
+  if (!source.enabled) return 'source__state--off'
+  return source.healthy ? 'source__state--ok' : 'source__state--idle'
 }
 </script>
 
@@ -160,12 +175,9 @@ function kindLabel(kind: string) {
               <p class="source__kind mono">{{ kindLabel(source.kind) }}</p>
             </div>
           </div>
-          <span
-            class="source__state"
-            :class="source.enabled ? (source.healthy ? 'source__state--ok' : 'source__state--idle') : 'source__state--off'"
-          >
+          <span class="source__state" :class="stateClass(source)">
             <span class="dot" />
-            {{ !source.enabled ? 'DISABLED' : source.awaitingKey ? 'NO KEY' : source.healthy ? 'HEALTHY' : 'READY' }}
+            {{ stateLabel(source) }}
           </span>
         </header>
 
@@ -251,8 +263,8 @@ function kindLabel(kind: string) {
       <div class="policy__col">
         <p class="eyebrow"><ShieldCheck :size="10" /> Ground rules</p>
         <ul class="policy__list policy__list--bullets">
-          <li>No port scanning, no address-range probing, no credential guessing.</li>
-          <li>Private, loopback and blocklisted hosts are rejected at ingest and again at fetch time.</li>
+          <li>Providers never port-scan or guess credentials. The optional local sensor probes only networks you allowlist, and only from your machine.</li>
+          <li>Private and blocklisted hosts are rejected from every provider feed. Only rows you collected yourself may point into your LAN, and only the frame proxy may reach them.</li>
           <li>Raw stream hosts are never serialised by the public API; frames are proxied.</li>
           <li>Every camera keeps its provider attribution and licence.</li>
         </ul>

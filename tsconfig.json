@@ -1,3 +1,8 @@
 {
-  "extends": "./.nuxt/tsconfig.json"
+  "extends": "./.nuxt/tsconfig.json",
+  "compilerOptions": {
+    // sensor/ is imported by scripts/*.mjs, which Node runs directly with
+    // type stripping — that runtime requires explicit .ts specifiers.
+    "allowImportingTsExtensions": true
+  }
 }

@@ -11,7 +11,12 @@ export interface SourceDefinition {
   id: string
   label: string
   short: string
-  kind: 'discovery' | 'enrichment' | 'seed'
+  /**
+   * `local` sources never run on a schedule and never touch the network on
+   * their own: they exist only because an operator ran the local sensor or
+   * imported a dataset on their own machine.
+   */
+  kind: 'discovery' | 'enrichment' | 'seed' | 'local'
   description: string
   homepage: string
   license: string
@@ -108,6 +113,34 @@ export const SOURCES: SourceDefinition[] = [
     keyless: true,
     accent: '#ffc061',
     coverage: 'Global · enrichment only'
+  },
+  {
+    id: 'sensor',
+    label: 'Local sensor',
+    short: 'LOCAL',
+    kind: 'local',
+    description:
+      'Cameras found by the local sensor on networks you explicitly allowlisted. The scan runs from your machine, results stay in your own database, and nothing is sent anywhere.',
+    homepage: 'https://github.com/davhhyn/ipcrawleng/blob/main/docs/LOCAL-SENSOR.md',
+    license: 'Your own network inventory',
+    licenseUrl: 'https://github.com/davhhyn/ipcrawleng/blob/main/docs/LOCAL-SENSOR.md',
+    keyless: true,
+    accent: '#6ff2c0',
+    coverage: 'Your networks · opt-in'
+  },
+  {
+    id: 'import',
+    label: 'Imported dataset',
+    short: 'IMPORT',
+    kind: 'local',
+    description:
+      'Records indexed from a scan export you already hold (Shodan JSON, Censys results, Rapid7 Open Data, or an asset inventory). Parsed locally — no query ever leaves the machine.',
+    homepage: 'https://github.com/davhhyn/ipcrawleng/blob/main/docs/LOCAL-SENSOR.md',
+    license: 'Depends on the source dataset — keep its notice',
+    licenseUrl: 'https://github.com/davhhyn/ipcrawleng/blob/main/docs/LOCAL-SENSOR.md',
+    keyless: true,
+    accent: '#cbbcff',
+    coverage: 'Whatever you import'
   }
 ]
 
@@ -128,3 +161,17 @@ export function sourceAccent(id: string): string {
 }
 
 export const KEYLESS_SOURCES = SOURCES.filter(source => source.keyless && source.kind !== 'enrichment')
+
+/** Local sources are operator-driven; the scheduler must never try them. */
+export const LOCAL_SOURCE_IDS = new Set(
+  SOURCES.filter(source => source.kind === 'local').map(source => source.id)
+)
+
+export function isLocalSource(id: string): boolean {
+  return LOCAL_SOURCE_IDS.has(id)
+}
+
+/** Rows from these sources may legitimately live on private addresses. */
+export function allowsPrivateHosts(id: string): boolean {
+  return id === 'sensor'
+}

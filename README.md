@@ -134,6 +134,8 @@ node .output/server/index.mjs      # production
 | **Fintraffic** (`digitraffic`) | discovery | — | CC BY 4.0 | Finland |
 | **Windy Webcams** (`windy`) | discovery | optional free key | Windy ToS | Global, opt-in |
 | **InternetDB** (`internetdb`) | enrichment | — | Shodan public data | Tags/vendor only |
+| **Local sensor** (`sensor`) | discovery · local | — | your declared scope | Networks you allowlist, on demand |
+| **Dataset import** (`import`) | discovery · local | — | your dataset | Whatever you point it at |
 
 Design rules that follow from "no paywall":
 
@@ -148,9 +150,45 @@ Design rules that follow from "no paywall":
 4. **Empty results never delete rows.** A provider returning nothing leaves the
    catalogue untouched. Only a successful non-empty run deactivates a source's
    stale rows.
+5. **Local sources are opt-in and never scheduled.** `sensor` and `import` only
+   change when you run `npm run sensor`; the daily task ignores them.
 
 Windy is the only source that *can* use a key, and it is off by default. Nothing
 in the app degrades if you never set one.
+
+---
+
+## Local sensor — your own Shodan, on your own LAN
+
+Shodan is an index of the whole internet built by constantly sweeping it. You
+cannot reproduce that from a laptop, and the sweep is the part you would not
+want to reproduce anyway. What is genuinely useful — open ports, service
+banners, page titles, auth realms, RTSP capabilities — can be collected locally
+from networks you name:
+
+```bash
+npm run sensor -- init                              # writes sensor.allowlist.json (gitignored)
+npm run sensor -- scan --cidr 192.168.1.0/24 --dry-run
+npm run sensor -- scan --cidr 192.168.1.0/24        # needs NUXT_SYNC_TOKEN in the app
+npm run sensor -- import --file shodan-export.jsonl # index a dataset you already own
+npm run sensor -- status
+```
+
+- **Scope is a file.** Every target must be covered by `sensor.allowlist.json`;
+  a missing file fails closed, blocks wider than `/16` are refused, and the run
+  is capped at 4096 addresses. Public ranges need an allowlist entry *and*
+  `publicAllowed` *and* `--allow-public` *and* `--yes`.
+- **No credentials, ever.** One anonymous `GET` on a handful of documented
+  camera paths and one RTSP `OPTIONS`; a `401` is recorded as evidence, not
+  attacked.
+- **Nothing leaves the machine.** Results POST to `/api/sensor/ingest` on your
+  own app (loopback + token), land in the same SQLite database as every other
+  source, and are tagged `source=sensor`. No telemetry, no upload, no
+  third-party call.
+- **The ingest endpoint cannot scan.** It only stores; scanning lives in the CLI,
+  so an exposed instance does not become an open scanner.
+
+Full walkthrough, limits and legal notes: **[docs/LOCAL-SENSOR.md](docs/LOCAL-SENSOR.md)**.
 
 ---
 
@@ -238,13 +276,20 @@ Full request/response reference lives at `/api` in the running app.
 
 ## Safety and ground rules
 
-This project indexes **publicly documented** cameras. It does not scan address
-ranges, guess credentials, or bypass authentication.
+This project indexes **publicly documented** cameras. No provider scans address
+ranges, guesses credentials, or bypasses authentication.
 
-- **No LAN or loopback ingestion.** `isDisallowedHost` rejects private, loopback,
-  link-local, `.local`, `.internal` and `.home.arpa` hosts at normalization time,
-  and again on every redirect hop at fetch time. DNS answers are re-checked to
-  block rebinding.
+- **No LAN or loopback ingestion from providers.** `isDisallowedHost` rejects
+  private, loopback, link-local, `.local`, `.internal` and `.home.arpa` hosts at
+  normalization time, and again on every redirect hop at fetch time. DNS answers
+  are re-checked to block rebinding. The only rows that may point into a private
+  network are ones you collected yourself with `npm run sensor` (see
+  [docs/LOCAL-SENSOR.md](docs/LOCAL-SENSOR.md)); the frame proxy reaches those
+  only when `NUXT_SENSOR_FETCH_LOCAL` allows it, and never resolves a hostname.
+- **Local scanning is opt-in and scoped.** `sensor.allowlist.json` is required
+  (missing file = hard error), public ranges need two independent switches, and
+  credentials are never sent. That file is gitignored: your LAN topology is not
+  our business.
 - **No credentials, no exotic schemes.** URLs with userinfo, or non-HTTP(S)
   schemes, are dropped.
 - **Bounded fetching.** Timeouts, a byte cap, a redirect cap and a per-sync

@@ -243,6 +243,50 @@ x-frame-source: upstream`,
       'The address is compared against documented hosts only and is never stored.',
       'Browser-cached for 5 minutes.'
     ]
+  },
+  {
+    id: 'sensor-ingest',
+    method: 'POST',
+    path: '/api/sensor/ingest',
+    title: 'Local sensor ingest',
+    summary: 'Stores findings from the local sensor CLI. Stores only — it cannot start a scan.',
+    params: [
+      { name: 'Authorization', type: 'header', detail: 'Bearer $NUXT_SYNC_TOKEN. There is no unauthenticated mode.' }
+    ],
+    example: `curl -X POST http://localhost:3000/api/sensor/ingest -H 'Authorization: Bearer $NUXT_SYNC_TOKEN' -H 'Content-Type: application/json' -d '{"origin":"sensor","complete":true,"detections":[{"host":"192.168.1.42","port":8080}]}'`,
+    response: `{
+  "ok": true,
+  "origin": "sensor",
+  "stored": 1,
+  "inserted": 1,
+  "updated": 0,
+  "deactivated": 0,
+  "rejected": 0,
+  "runId": 12
+}`,
+    notes: [
+      'Loopback only unless NUXT_SENSOR_ALLOW_REMOTE_INGEST=true; 12 requests/minute per IP.',
+      'Hosts must be IPv4 literals. Retirement of unseen rows happens only when "complete": true.',
+      'Requires NUXT_SYNC_TOKEN. Set NUXT_SENSOR_INGEST=false to switch the endpoint off entirely.'
+    ]
+  },
+  {
+    id: 'sensor-status',
+    method: 'GET',
+    path: '/api/sensor/status',
+    title: 'Local sensor status',
+    summary: 'What the sensor has stored, when it last ran, and whether ingest and local frame fetching are enabled.',
+    example: 'curl http://localhost:3000/api/sensor/status',
+    response: `{
+  "ingestEnabled": true,
+  "fetchLocalFrames": true,
+  "counts": { "local": 3, "localLive": 2, "imported": 0 },
+  "lastRun": { "id": 1, "origin": "sensor", "at": 1792941574350, "stored": 3 }
+}`,
+    notes: [
+      'Read-only: it reports state and cannot trigger a scan.',
+      'Cameras on private addresses are fetched through the proxy only for source=sensor rows.'
+    ]
   }
 ]
 

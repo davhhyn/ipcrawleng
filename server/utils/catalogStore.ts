@@ -14,6 +14,7 @@ import {
   listCountSnapshots
 } from './syncStore'
 import { configuredSourceIds, missingSourceKey } from './config'
+import { isLocalSource } from '#shared/sources'
 
 interface CountsRow {
   total: number
@@ -141,11 +142,17 @@ export function readSources(syncEnabled: boolean): SourcesResponse {
       requiresEnv: definition.requiresEnv,
       accent: definition.accent,
       coverage: definition.coverage,
-      enabled: definition.id === 'curated' ? true : enabledIds.includes(definition.id),
+      // Local sources have no scheduler: they are "available" whenever an
+      // operator runs the sensor, never "enabled by config".
+      enabled: definition.id === 'curated' || isLocalSource(definition.id)
+        ? true
+        : enabledIds.includes(definition.id),
       awaitingKey: missingSourceKey(definition.id),
       cams: countBySource[definition.id] ?? 0,
       lastRun,
-      healthy: lastRun?.ok === true || (definition.id === 'curated' && (countBySource.curated ?? 0) > 0)
+      healthy: lastRun?.ok === true
+        || (definition.id === 'curated' && (countBySource.curated ?? 0) > 0)
+        || (isLocalSource(definition.id) && (countBySource[definition.id] ?? 0) > 0)
     }
   })
 

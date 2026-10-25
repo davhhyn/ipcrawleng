@@ -3,7 +3,8 @@ import { isIP } from 'node:net'
 import type { CamRow } from './camRow'
 import { recordProbe } from './camStore'
 import { isDisallowedHost, isLoopbackAddress, isPrivateAddress } from './blocklist'
-import { allowPrivateHosts, probeTimeoutMs, userAgent } from './config'
+import { allowPrivateHosts, probeTimeoutMs, sensorFetchLocal, userAgent } from './config'
+import { allowsPrivateHosts } from '#shared/sources'
 
 /**
  * Liveness probing and frame fetching.
@@ -23,7 +24,30 @@ const DNS_TTL_MS = 10 * 60 * 1000
 const dnsCache = new Map<string, { at: number, publicHost: boolean }>()
 const MAX_REDIRECTS = 4
 
-export async function isPublicHost(hostname: string): Promise<boolean> {
+/**
+ * Addresses a local-sensor row may legitimately live at: RFC1918 plus loopback.
+ *
+ * Deliberately excludes link-local (169.254.0.0/16, i.e. cloud metadata and
+ * APIPA), CGNAT and anything multicast/reserved. The sensor itself cannot scan
+ * those, so a row claiming one is either a mistake or an attempt to turn the
+ * frame proxy into an SSRF pivot.
+ */
+export function isSensorReachable(hostname: string): boolean {
+  if (isIP(hostname) !== 4) return false
+  if (isLoopbackAddress(hostname)) return true
+  const [a, b] = hostname.split('.').map(Number) as [number, number]
+  if (a === 10) return true
+  if (a === 172 && b >= 16 && b <= 31) return true
+  if (a === 192 && b === 168) return true
+  return false
+}
+
+export async function isPublicHost(hostname: string, allowPrivate = false): Promise<boolean> {
+  if (allowPrivate && isSensorReachable(hostname)) {
+    // The relaxation is scoped to sensor rows on the operator's own network —
+    // never to web-discovered rows, and never to metadata/link-local space.
+    return true
+  }
   if (isDisallowedHost(hostname)) return false
   if (isIP(hostname)) {
     if (!isPrivateAddress(hostname)) return true
@@ -61,7 +85,13 @@ function combineSignals(timeoutMs: number, external?: AbortSignal): AbortSignal 
 
 async function safeFetch(
   rawUrl: string,
-  opts: { timeoutMs: number, headers?: Record<string, string>, signal?: AbortSignal, method?: string }
+  opts: {
+    timeoutMs: number
+    headers?: Record<string, string>
+    signal?: AbortSignal
+    method?: string
+    allowPrivateHost?: boolean
+  }
 ): Promise<Response> {
   let current: URL
   try {
@@ -75,7 +105,7 @@ async function safeFetch(
       throw new Error('unsupported protocol')
     }
     if (current.username || current.password) throw new Error('credentials in url')
-    if (!await isPublicHost(current.hostname)) throw new Error('blocked host')
+    if (!await isPublicHost(current.hostname, opts.allowPrivateHost ?? false)) throw new Error('blocked host')
 
     const response = await fetch(current.toString(), {
       method: opts.method ?? 'GET',
@@ -153,12 +183,19 @@ export interface FetchResult {
 
 export async function fetchBytes(
   url: string,
-  opts: { timeoutMs?: number, maxBytes?: number, headers?: Record<string, string>, signal?: AbortSignal } = {}
+  opts: {
+    timeoutMs?: number
+    maxBytes?: number
+    headers?: Record<string, string>
+    signal?: AbortSignal
+    allowPrivateHost?: boolean
+  } = {}
 ): Promise<FetchResult> {
   const response = await safeFetch(url, {
     timeoutMs: opts.timeoutMs ?? probeTimeoutMs(),
     headers: opts.headers,
-    signal: opts.signal
+    signal: opts.signal,
+    allowPrivateHost: opts.allowPrivateHost ?? false
   })
   const bytes = await readLimited(response, opts.maxBytes ?? 64 * 1024)
   return {
@@ -243,12 +280,14 @@ export async function probeCam(row: CamRow, signal?: AbortSignal): Promise<Probe
     : (row.image_url || row.stream_url)
   if (!url) return null
 
+  const allowLocal = sensorFetchLocal() && allowsPrivateHosts(row.source)
   const checkedAt = Date.now()
   try {
     const result = await fetchBytes(url, {
       timeoutMs: probeTimeoutMs(),
       maxBytes: 96 * 1024,
       signal,
+      allowPrivateHost: allowLocal,
       headers: { 'Range': 'bytes=0-98303' }
     })
 
@@ -361,7 +400,8 @@ export async function fetchFrame(row: CamRow): Promise<FrameResult | null> {
   try {
     const result = await fetchBytes(url, {
       timeoutMs: Math.max(probeTimeoutMs(), 5500),
-      maxBytes: 6 * 1024 * 1024
+      maxBytes: 6 * 1024 * 1024,
+      allowPrivateHost: sensorFetchLocal() && allowsPrivateHosts(row.source)
     })
     if (!result.ok) {
       recordProbe(row.id, {
